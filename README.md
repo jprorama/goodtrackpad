@@ -1,4 +1,4 @@
-== No trackpad! Bad trackpad! ==
+# Good Trackpad!
 
 Learn how your trackpad behaves when your hands are on the keyboard
 ...and tell how you want it to behave.
