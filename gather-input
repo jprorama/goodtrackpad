@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# gather input from the trackpad device 
+# redirect it to the good or bad folder depending on the training purpose
+
+sudo evtest /dev/input/event7
