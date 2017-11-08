@@ -3,4 +3,17 @@
 # gather input from the trackpad device 
 # redirect it to the good or bad folder depending on the training purpose
 
-sudo evtest /dev/input/event7
+# get category of training date, eg. good/bad
+traintype=$1
+
+# name training file
+trainfile=$(mktemp -u -p $traintype --suffix .out evtest-`date +%F`-XXX)
+
+# get device id, e.g. Cypress for XPS 12 circa 2013
+deviceid=`xinput list | grep CyPS | sed -e 's/^.*id=\([0-9][0-9]*\).*$/\1/'`
+
+# get device path
+devicepath=`xinput list-props 13 | awk -F\" '/Device Node/{print $2}'`
+
+# gather training data
+sudo evtest $devicepath > $trainfile
