@@ -9,11 +9,11 @@ traintype=$1
 # name training file
 trainfile=$(mktemp -u -p $traintype --suffix .out evtest-`date +%F`-XXX)
 
-# get device id, e.g. Cypress for XPS 12 circa 2013
-deviceid=`xinput list | grep CyPS | sed -e 's/^.*id=\([0-9][0-9]*\).*$/\1/'`
+# get device id use Touchpad string for a range of devices
+deviceid=`xinput list | grep Touchpad | sed -e 's/^.*id=\([0-9][0-9]*\).*$/\1/'`
 
 # get device path
-devicepath=`xinput list-props 13 | awk -F\" '/Device Node/{print $2}'`
+devicepath=`xinput list-props $deviceid | awk -F\" '/Device Node/{print $2}'`
 
 # gather training data
 sudo evtest $devicepath > $trainfile
