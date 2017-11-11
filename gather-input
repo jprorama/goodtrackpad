@@ -5,6 +5,7 @@
 
 # get category of training date, eg. good/bad
 traintype=$1
+mkdir -p $traintype
 
 # name training file
 trainfile=$(mktemp -u -p $traintype --suffix .out evtest-`date +%F`-XXX)
